@@ -1,0 +1,74 @@
+servicenow-mid-ecs-deployment/
+├── .github/
+│   └── workflows/
+│       ├── ci.yml
+│       └── cd.yml
+├── src/
+│   ├── aws_utils/
+│   │   ├── __init__.py
+│   │   ├── ec2.py
+│   │   ├── ecs.py
+│   │   ├── iam.py
+│   │   └── ssm.py
+│   ├── deployment/
+│   │   ├── __init__.py
+│   │   ├── mid_server.py
+│   │   └── parameter_store.py
+│   └── scripts/
+│       ├── deploy.py
+│       ├── build.py
+│       └── setup_params.py
+├── tests/
+│   ├── unit/
+│   │   ├── test_aws_utils.py
+│   │   └── test_deployment.py
+│   └── integration/
+│       └── test_deployment_process.py
+├── terraform/
+│   ├── main.tf
+│   ├── variables.tf
+│   ├── outputs.tf
+│   └── ecs.tf
+├── docker/
+│   ├── Dockerfile
+│   └── docker-compose.yml
+├── config/
+│   ├── dev.env
+│   ├── stage.env
+│   └── prod.env
+├── docs/
+│   ├── setup.md
+│   └── usage.md
+├── .gitignore
+├── requirements.txt
+├── setup.py
+├── README.md
+└── LICENSE
+
+
+Here's an explanation of the project structure:
+
+.github/workflows/: Contains GitHub Actions workflow files for CI/CD.
+src/: Main source code directory.
+
+aws_utils/: Python modules for AWS operations.
+deployment/: Modules for deployment-specific operations.
+scripts/: Main Python scripts that replace the original bash scripts.
+
+
+tests/: Contains unit and integration tests.
+terraform/: Terraform configuration files for infrastructure as code.
+docker/: Docker-related files.
+
+Note: This directory is for your custom Docker configurations. The ServiceNow MID Server Docker recipe should be handled separately as discussed earlier.
+
+
+config/: Environment-specific configuration files.
+docs/: Project documentation.
+Root directory files:
+
+.gitignore: Specifies intentionally untracked files to ignore.
+requirements.txt: Lists Python dependencies.
+setup.py: For packaging the project.
+README.md: Project overview and quick start guide.
+LICENSE: Project license file.
