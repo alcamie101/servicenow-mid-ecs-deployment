@@ -34,7 +34,7 @@ class TestMIDServerDeployer(unittest.TestCase):
         }
         mock_ecs.return_value.register_task_definition.return_value = {
             "taskDefinition": {
-                "taskDefinitionArn": "arn:aws:ecs:us-west-2:123456789012:task-definition/test:1"
+                "taskDefinitionArn": "arn:aws:ecs:us-east-1:123456789012:task-definition/test:1"
             }
         }
         mock_ecs.return_value.describe_services.return_value = {"services": []}

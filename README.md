@@ -17,6 +17,50 @@ This project automates the deployment of ServiceNow MID (Management, Instrumenta
 - Terraform 0.14+
 - Docker
 
+## Project Structure
+
+```
+servicenow-mid-ecs-deployment/
+├── .github/
+│   └── workflows/
+│       ├── ci.yml
+│       └── cd.yml
+├── docs/
+│   ├── setup.md
+│   └── usage.md
+├── src/
+│   ├── aws_utils/
+│   │   ├── __init__.py
+│   │   ├── ec2.py
+│   │   ├── ecs.py
+│   │   ├── iam.py
+│   │   └── ssm.py
+│   ├── deployment/
+│   │   ├── __init__.py
+│   │   └── mid_server.py
+│   └── scripts/
+│       └── deploy.py
+├── tests/
+│   ├── unit/
+│   │   ├── test_ec2_utils.py
+│   │   ├── test_ecs_utils.py
+│   │   ├── test_iam_utils.py
+│   │   └── test_ssm_utils.py
+│   └── integration/
+│       └── test_mid_server_deployer.py
+├── terraform/
+│   ├── main.tf
+│   ├── variables.tf
+│   └── terraform.tfvars
+├── ecs/
+│   └── task-definitions/
+│       └── task-definition-template.json
+├── .gitignore
+├── README.md
+├── requirements.txt
+└── Dockerfile
+```
+
 ## Quick Start
 
 1. Clone the repository:
@@ -25,8 +69,10 @@ This project automates the deployment of ServiceNow MID (Management, Instrumenta
    cd servicenow-mid-ecs-deployment
    ```
 
-2. Install dependencies:
+2. Set up a virtual environment and install dependencies:
    ```
+   python3 -m venv venv
+   source venv/bin/activate  # On Windows use `venv\Scripts\activate`
    pip install -r requirements.txt
    ```
 
@@ -52,6 +98,18 @@ For detailed setup and usage instructions, please refer to the following documen
 
 - [Setup Guide](docs/setup.md)
 - [Usage Guide](docs/usage.md)
+
+## Running Tests
+
+To run unit tests:
+```
+python -m unittest discover tests/unit
+```
+
+To run integration tests:
+```
+python -m unittest discover tests/integration
+```
 
 ## Contributing
 

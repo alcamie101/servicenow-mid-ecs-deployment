@@ -12,7 +12,7 @@ class TestECSUtils(unittest.TestCase):
     def test_list_clusters(self, mock_aws_cmd):
         # Arrange
         mock_response = {
-            "clusterArns": ["arn:aws:ecs:us-west-2:123456789012:cluster/test-cluster"]
+            "clusterArns": ["arn:aws:ecs:us-east-1:123456789012:cluster/test-cluster"]
         }
         mock_aws_cmd.return_value = mock_response
 
@@ -48,7 +48,7 @@ class TestECSUtils(unittest.TestCase):
         execution_role_arn = "arn:aws:iam::123456789012:role/test-execution-role"
         mock_response = {
             "taskDefinition": {
-                "taskDefinitionArn": "arn:aws:ecs:us-west-2:123456789012:task-definition/test-task:1"
+                "taskDefinitionArn": "arn:aws:ecs:us-east-1:123456789012:task-definition/test-task:1"
             }
         }
         mock_aws_cmd.return_value = mock_response
@@ -79,7 +79,7 @@ class TestECSUtils(unittest.TestCase):
         cluster = "test-cluster"
         service_name = "test-service"
         task_definition = (
-            "arn:aws:ecs:us-west-2:123456789012:task-definition/test-task:1"
+            "arn:aws:ecs:us-east-1:123456789012:task-definition/test-task:1"
         )
         desired_count = 1
         subnets = ["subnet-12345678"]

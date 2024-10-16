@@ -64,7 +64,7 @@ Ensure you have the following installed and configured:
 5. Set up Terraform variables:
    Create a `terraform/terraform.tfvars` file with the necessary variables. Do not include sensitive information in this file. Example:
    ```
-   aws_region         = "us-west-2"
+   aws_region         = "us-east-1"
    environment        = "dev"
    vpc_cidr           = "10.0.0.0/16"
    ecr_repo_url       = "YOUR_ECR_REPO_URL"
@@ -84,6 +84,24 @@ Ensure you have the following installed and configured:
    - AWS_ACCESS_KEY_ID
    - AWS_SECRET_ACCESS_KEY
    - AWS_REGION
+
+## Setting up GitHub Actions for CI/CD
+
+1. In your GitHub repository, go to the "Actions" tab.
+
+2. GitHub should automatically detect the workflow files in the `.github/workflows` directory. If not, you can manually set up the workflows:
+   - Click on "New workflow"
+   - Choose "set up a workflow yourself"
+   - Copy the contents of `ci.yml` and `cd.yml` into separate files
+
+3. Set up the following secrets in your GitHub repository (Settings > Secrets):
+   - AWS_ACCESS_KEY_ID
+   - AWS_SECRET_ACCESS_KEY
+   - Any other environment-specific secrets (e.g., MID_INSTANCE_PASSWORD)
+
+4. Commit and push your changes. The CI workflow will run on every push and pull request to the main and develop branches. The CD workflow will run on pushes to the main branch.
+
+5. Monitor the Actions tab in your GitHub repository to see the workflow runs and their status.
 
 ## Troubleshooting
 
