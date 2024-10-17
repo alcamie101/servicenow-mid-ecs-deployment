@@ -1,0 +1,6 @@
+environment        = "staging"
+vpc_cidr           = "10.1.0.0/16"
+ecr_repo_url       = "your-staging-ecr-repo-url"
+mid_instance_url   = "https://staging.service-now.com"
+mid_instance_username = "staging_user"
+mid_server_name    = "mid-server-staging"

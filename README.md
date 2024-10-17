@@ -21,44 +21,57 @@ This project automates the deployment of ServiceNow MID (Management, Instrumenta
 
 ```
 servicenow-mid-ecs-deployment/
-├── .github/
-│   └── workflows/
-│       ├── ci.yml
-│       └── cd.yml
-├── docs/
+├── CONTRIBUTING.md
+├── LICENSE
+├── README.md
+├── config
+│   └── example.env
+├── docker
+│   ├── Dockerfile
+│   └── docker-compose.yml
+├── docs
 │   ├── setup.md
 │   └── usage.md
-├── src/
-│   ├── aws_utils/
+├── requirements.txt
+├── setup.py
+├── src
+│   ├── __init__.py
+│   ├── aws_utils
 │   │   ├── __init__.py
 │   │   ├── ec2.py
 │   │   ├── ecs.py
 │   │   ├── iam.py
 │   │   └── ssm.py
-│   ├── deployment/
+│   ├── config.py
+│   ├── deployment
 │   │   ├── __init__.py
-│   │   └── mid_server.py
-│   └── scripts/
-│       └── deploy.py
-├── tests/
-│   ├── unit/
-│   │   ├── test_ec2_utils.py
-│   │   ├── test_ecs_utils.py
-│   │   ├── test_iam_utils.py
-│   │   └── test_ssm_utils.py
-│   └── integration/
-│       └── test_mid_server_deployer.py
-├── terraform/
+│   │   ├── mid_server.py
+│   │   └── parameter_store.py
+│   └── scripts
+│       ├── build.py
+│       ├── deploy.py
+│       ├── rollback.py
+│       └── setup_params.py
+├── terraform
+│   ├── dev.tfvars
+│   ├── ecs.tf
 │   ├── main.tf
-│   ├── variables.tf
-│   └── terraform.tfvars
-├── ecs/
-│   └── task-definitions/
-│       └── task-definition-template.json
-├── .gitignore
-├── README.md
-├── requirements.txt
-└── Dockerfile
+│   ├── outputs.tf
+│   ├── prod.tfvars
+│   ├── stage.tfvars
+│   ├── terraform.tfvars
+│   └── variables.tf
+└── tests
+    ├── integration
+    │   ├── test_deployment_process.py
+    │   └── test_mid_server_deployer.py
+    └── unit
+        ├── test_aws_utils.py
+        ├── test_deployment.py
+        ├── test_ec2_utils.py
+        ├── test_ecs_utils.py
+        ├── test_iam_utils.py
+        └── test_ssm_utils.py
 ```
 
 ## Quick Start

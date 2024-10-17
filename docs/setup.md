@@ -7,7 +7,7 @@ This guide provides detailed instructions for setting up the ServiceNow MID Serv
 Ensure you have the following installed and configured:
 
 - Python 3.12+
-- AWS CLI configured with appropriate permissions
+- AWS CLI (latest version)
 - Terraform 1.9.5+
 - Docker 27.2+
 
@@ -47,11 +47,60 @@ Ensure you have the following installed and configured:
 
    Note: After you're done working on the project, you can deactivate the virtual environment by running `deactivate`.
 
-3. Configure AWS credentials:
-   ```
-   aws configure
-   ```
-   Enter your AWS Access Key ID, Secret Access Key, and default region when prompted.
+3. Set up AWS Credentials with SSO:
+
+   When working with multiple AWS accounts and using SSO, follow these steps:
+
+   a. Configure SSO sessions for each of your AWS organizations:
+
+      ```
+      aws configure sso-session --profile-name devopspub
+      aws configure sso-session --profile-name devopsgov
+      ```
+
+      Follow the prompts to enter your SSO start URL, SSO Region, and choose the SSO registration scopes.
+
+   b. Set up named profiles for each account you need to access:
+
+      ```
+      aws configure sso --profile-name pub-sandbox
+      aws configure sso --profile-name gov-sandbox
+      ```
+
+      Choose the appropriate SSO session, account, and role for each profile.
+
+   c. Your `~/.aws/config` file should now contain entries similar to:
+
+      ```
+      [profile pub-sandbox]
+      sso_session = devopspub
+      sso_account_id = 348275345078
+      sso_role_name = AWSAdministratorAccess
+      region = us-east-1
+      output = yaml-stream
+
+      [profile gov-sandbox]
+      sso_session = devopsgov
+      sso_account_id = 123405742824
+      sso_role_name = AdministratorAccess
+      region = us-gov-west-1
+      output = yaml-stream
+      ```
+
+   d. To use a specific profile, you can either:
+      - Set the AWS_PROFILE environment variable:
+        ```
+        export AWS_PROFILE=pub-sandbox
+        ```
+      - Or specify the profile in your command:
+        ```
+        aws s3 ls --profile pub-sandbox
+        ```
+
+   e. To log in to an SSO session:
+      ```
+      aws sso login --profile pub-sandbox
+      ```
 
 4. Set up environment variables:
    Create a `.env` file in the root directory with the following content:
@@ -76,7 +125,7 @@ Ensure you have the following installed and configured:
 6. Initialize Terraform:
    ```
    cd terraform
-   terraform init
+   terraform init -backend-config="profile=your_aws_profile"
    ```
 
 7. (Optional) Set up GitHub Secrets for CI/CD:
@@ -103,6 +152,22 @@ Ensure you have the following installed and configured:
 
 5. Monitor the Actions tab in your GitHub repository to see the workflow runs and their status.
 
+## Handling Multiple Environments
+
+Given your complex setup with multiple accounts, consider the following strategies:
+
+1. Create separate Terraform workspaces for each account/environment.
+2. Use different backend configurations for each account to store state files separately.
+3. Parameterize your Terraform configurations to accept different profile names.
+4. In your Python deployment scripts, accept a `--profile` argument to specify which AWS profile to use.
+
+## Security Considerations
+
+- Never hardcode AWS credentials in your scripts or configuration files.
+- Use IAM roles with least privilege principles for your deployments.
+- Regularly rotate access keys and review permissions.
+- Consider using AWS Organizations SCPs (Service Control Policies) to enforce security boundaries across accounts.
+
 ## Troubleshooting
 
 If you encounter issues with the virtual environment:
@@ -126,6 +191,8 @@ pip install --upgrade pip
 ```
 
 Then attempt to install the requirements again.
+
+Remember to regularly refresh your SSO login sessions as they expire, typically after several hours.
 
 ## Next Steps
 
