@@ -12,10 +12,10 @@ This project automates the deployment of ServiceNow MID (Management, Instrumenta
 
 ## Prerequisites
 
-- Python 3.8+
+- Python 3.12+
 - AWS CLI configured with appropriate permissions
-- Terraform 0.14+
-- Docker
+- Terraform 1.9.5+
+- Docker 27.2+
 
 ## Project Structure
 

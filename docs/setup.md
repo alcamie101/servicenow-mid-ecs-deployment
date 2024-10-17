@@ -6,10 +6,10 @@ This guide provides detailed instructions for setting up the ServiceNow MID Serv
 
 Ensure you have the following installed and configured:
 
-- Python 3.8+
-- AWS CLI
-- Terraform 0.14+
-- Docker
+- Python 3.12+
+- AWS CLI configured with appropriate permissions
+- Terraform 1.9.5+
+- Docker 27.2+
 
 ## Installation Steps
 

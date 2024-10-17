@@ -1,47 +1,47 @@
 # AWS SDK for Python
-boto3>=1.18.65
+boto3>=1.35.42
 
 # For handling environment variables
-python-dotenv>=0.19.1
+python-dotenv>=1.0.1
 
 # For infrastructure as code
-terraform-local>=0.12.0
+terraform-local>=0.20.0
 
 # For unit testing
-pytest>=6.2.5
+pytest>=8.3.3
 
 # For type checking
-mypy>=0.910
+mypy>=1.11
 
 # For linting
-flake8>=3.9.2
+flake8>=7.1.1
 
 # For code formatting
-black>=21.9b0
+black>=24.10.0
 
 # For handling concurrent operations
-asyncio>=3.4.3
+asyncio>=3.12.7
 
 # For HTTP requests (if needed for interacting with ServiceNow API)
-requests>=2.26.0
+requests>=2.32.3
 
 # For parsing command-line arguments
 argparse>=1.4.0
 
 # For logging (if you want to use a more advanced logging setup)
-loguru>=0.5.3
+loguru>=0.7.2
 
 # For YAML file handling (if needed)
 PyYAML>=6.0.2
 
 # For JSON handling (if needed beyond Python's built-in json module)
-ujson>=4.2.0
+ujson>=5.10.0
 
 # For progress bars (optional, but can be nice for long-running operations)
-tqdm>=4.62.3
+tqdm>=4.66.5
 
 # For handling dates and times (if needed beyond Python's built-in datetime)
-python-dateutil>=2.8.2
+python-dateutil>=2.9.0.post0
 
 # For parallelism (if needed)
-joblib>=1.1.0
+joblib>=1.4.2
