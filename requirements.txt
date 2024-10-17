@@ -20,7 +20,7 @@ flake8>=7.1.1
 black>=24.10.0
 
 # For handling concurrent operations
-asyncio>=3.12.7
+asyncio>=3.4.3
 
 # For HTTP requests (if needed for interacting with ServiceNow API)
 requests>=2.32.3
