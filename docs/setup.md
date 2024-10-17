@@ -15,7 +15,7 @@ Ensure you have the following installed and configured:
 
 1. Clone the repository:
    ```
-   git clone https://github.com/your-username/servicenow-mid-ecs-deployment.git
+   git clone https://github.com/alcamie101/servicenow-mid-ecs-deployment.git
    cd servicenow-mid-ecs-deployment
    ```
 
